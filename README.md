@@ -28,7 +28,7 @@ WordPressのオリジナルテーマの練習</br>
    </h2>
    ```
    テンプレートタグについては下記を参照</br>
-   [](https://wpdocs.osdn.jp/%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E3%82%BF%E3%82%B0"WordPress Codex 日本語版/テンプレートタグ")</br>
+   ![](https://wpdocs.osdn.jp/%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E3%82%BF%E3%82%B0"WordPress Codex 日本語版/テンプレートタグ")</br>
 3. headタグの終わりにwpヘッドテンプレートを記入。</br>
    ```
    # 略
@@ -57,5 +57,5 @@ WordPressのオリジナルテーマの練習</br>
             on <?php the_time("Y-n-j"); ?></p>
         </div>
    ```
-   ※日付と時刻のパラメータ(上記記述内の"Y-n-j")に関しては下記を参照
-   [](https://ja.wordpress.org/support/article/formatting-date-and-time/"日付と時刻の書式")
+   ※日付と時刻のパラメータ(上記記述内の"Y-n-j")に関しては下記を参照</br>
+   ![](https://ja.wordpress.org/support/article/formatting-date-and-time/"日付と時刻の書式")
