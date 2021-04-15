@@ -83,7 +83,7 @@
           </a>
           <p class="post-meta">Posted by
             <a href="#">Start Bootstrap</a>
-            on September 24, 2019</p>
+            on <?php the_time("Y-n-j"); ?></p>
         </div>
         <hr>
         <div class="post-preview">
@@ -179,7 +179,6 @@
   <!-- Custom scripts for this template -->
   <script src="js/clean-blog.min.js"></script>
   <?php wp_footer(); ?>
-
 </body>
 
 </html>

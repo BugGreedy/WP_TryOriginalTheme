@@ -17,8 +17,9 @@ WordPressのオリジナルテーマの練習</br>
 3. ブラウザをWordPressの管理画面で確認。新たに作ったディレクトリ名でテーマが追加されていればOK。
 
 ## 第2回の内容
+### 最低限のhtml．phpの編集
 1. boostrapより"Cleam Blog"というフリーテーマをDL。のち解凍する。</br>
-   解凍されたファイルの中から"index.html"というファイル名を"index.php"にし、オリジナルテーマディレクトリ内の既存のindex。phpと置き換える。</br>
+   解凍されたファイルの中から"index.html"というファイル名を"index.php"にし、オリジナルテーマディレクトリ内の既存のindex.phpと置き換える。</br>
 2. 置き換えたindex.phpをVScodeで開く。</br>
    76行目付近にあるh2タグの内容をWordPressのtitleタグ(テンプレートタグ)に置き換える。</br>
    ```
@@ -28,10 +29,33 @@ WordPressのオリジナルテーマの練習</br>
    ```
    テンプレートタグについては下記を参照</br>
    [](https://wpdocs.osdn.jp/%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E3%82%BF%E3%82%B0"WordPress Codex 日本語版/テンプレートタグ")</br>
-3. index.php内のheadタグの終わりにwpヘッドテンプレートを記入。</br>
+3. headタグの終わりにwpヘッドテンプレートを記入。</br>
    ```
    # 略
      <?php wp_head(); ?>
    </head>
    ```
-   
+4.  bodyタグの終わりにwpヘッドテンプレートを記入。</br>
+   ```
+   # 略
+     <?php wp_footer(); ?>
+   </body>
+   ```
+5. 2.で記述したタイトルタグの付近にthe_timeテンプレートタグを挿入</br>
+   ```
+         <div class="post-preview">
+          <a href="post.html">
+            <h2 class="post-title">
+              <?php the_title(); ?>
+            </h2>
+            <h3 class="post-subtitle">
+              Problems look mighty small from 150 miles up
+            </h3>
+          </a>
+          <p class="post-meta">Posted by
+            <a href="#">Start Bootstrap</a>
+            on <?php the_time("Y-n-j"); ?></p>
+        </div>
+   ```
+   ※日付と時刻のパラメータ(上記記述内の"Y-n-j")に関しては下記を参照
+   [](https://ja.wordpress.org/support/article/formatting-date-and-time/"日付と時刻の書式")
