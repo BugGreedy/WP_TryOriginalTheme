@@ -17,9 +17,10 @@ WordPressのオリジナルテーマの練習</br>
    ```
    </br>
 3. ブラウザをWordPressの管理画面で確認。新たに作ったディレクトリ名でテーマが追加されていればOK。
+</br>
 
 ## 第2回の内容
-### 最低限のhtml．phpの編集
+### テンプレートタグを使おう①
 1. boostrapより"Cleam Blog"というフリーテーマをDL。のち解凍する。</br>
    解凍されたファイルの中から"index.html"というファイル名を"index.php"にし、オリジナルテーマディレクトリ内の既存のindex.phpと置き換える。</br>
    </br>
@@ -65,3 +66,7 @@ WordPressのオリジナルテーマの練習</br>
    ```
    ※日付と時刻のパラメータ(上記記述内の"Y-n-j")に関しては下記を参照</br>
    [日付と時刻の書式](https://ja.wordpress.org/support/article/formatting-date-and-time/)</br>
+</br>
+
+## 第3回の内容
+### テンプレートタグを使おう②
