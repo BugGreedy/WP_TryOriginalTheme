@@ -35,7 +35,7 @@ WordPressのオリジナルテーマの練習</br>
      <?php wp_head(); ?>
    </head>
    ```
-4.  bodyタグの終わりにwpヘッドテンプレートを記入。</br>
+4. bodyタグの終わりにwpヘッドテンプレートを記入。</br>
    ```
    # 略
      <?php wp_footer(); ?>
