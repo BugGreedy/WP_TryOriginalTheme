@@ -20,6 +20,7 @@ WordPressのオリジナルテーマの練習</br>
 ### 最低限のhtml．phpの編集
 1. boostrapより"Cleam Blog"というフリーテーマをDL。のち解凍する。</br>
    解凍されたファイルの中から"index.html"というファイル名を"index.php"にし、オリジナルテーマディレクトリ内の既存のindex.phpと置き換える。</br>
+   </br>
 2. 置き換えたindex.phpをVScodeで開く。</br>
    76行目付近にあるh2タグの内容をWordPressのtitleタグ(テンプレートタグ)に置き換える。</br>
    ```
@@ -28,19 +29,21 @@ WordPressのオリジナルテーマの練習</br>
    </h2>
    ```
    テンプレートタグについては下記を参照</br>
-   [WordPress Codex 日本語版/テンプレートタグ](https://wpdocs.osdn.jp/%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E3%82%BF%E3%82%B0)</br>
+   [WordPress Codex 日本語版/テンプレートタグ](https://wpdocs.osdn.jp/%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E3%82%BF%E3%82%B0)</br></br>
 3. headタグの終わりにwpヘッドテンプレートを記入。</br>
    ```
    # 略
      <?php wp_head(); ?>
    </head>
    ```
+   </br>
 4. bodyタグの終わりにwpヘッドテンプレートを記入。</br>
    ```
    # 略
      <?php wp_footer(); ?>
    </body>
    ```
+   </br>
 5. 2.で記述したタイトルタグの付近にthe_timeテンプレートタグを挿入</br>
    ```
          <div class="post-preview">
@@ -59,4 +62,3 @@ WordPressのオリジナルテーマの練習</br>
    ```
    ※日付と時刻のパラメータ(上記記述内の"Y-n-j")に関しては下記を参照</br>
    [日付と時刻の書式](https://ja.wordpress.org/support/article/formatting-date-and-time/)</br>
-   

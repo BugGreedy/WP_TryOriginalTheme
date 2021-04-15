@@ -83,7 +83,7 @@
           </a>
           <p class="post-meta">Posted by
             <a href="#">Start Bootstrap</a>
-            on <?php the_time("Y-n-j"); ?></p>
+            on <?php the_time("Y-m-d(D)"); ?></p>
         </div>
         <hr>
         <div class="post-preview">
