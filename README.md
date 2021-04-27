@@ -70,3 +70,22 @@ WordPressのオリジナルテーマの練習</br>
 
 ## 第3回の内容
 ### テンプレートタグを使おう②
+1. 前回記述した<?php the_title(); ?>の下に"subtitle"なるタブがあったが、WordPressにサブタイトルはないので<?php the_content(); ?>とし本文を表示させるようにしたい。</br>
+   また、投稿者が直記述で<a href="#">Start Bootstrap</a>となっている箇所を<?php the_author(); ?>とし投稿者を表示されるようにする</br>
+   ```
+    <?php the_post(); ?>
+        <div class="post-preview">
+          <a href="post.html">
+            <h2 class="post-title">
+              <?php the_title(); ?>
+            </h2>
+            <h3 class="post-subtitle">
+              <?php the_content(); ?> 
+            </h3>
+          </a>
+          <p class="post-meta">Posted by
+            <?php the_author(); ?>
+            on <?php the_time("Y/m/d"); ?></p>
+        </div>
+        // 以下は略
+   ```
