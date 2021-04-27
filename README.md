@@ -80,11 +80,11 @@ WordPressのオリジナルテーマの練習</br>
               <?php the_title(); ?>
             </h2>
             <h3 class="post-subtitle">
-              <?php the_content(); ?>  //追記
+              <?php the_content(); ?>      //追記
             </h3>
           </a>
           <p class="post-meta">Posted by
-            <?php the_author(); ?> //追記
+            <?php the_author(); ?>      //追記
             on <?php the_time("Y/m/d"); ?></p>
         </div>
         // 以下は略
