@@ -95,7 +95,7 @@ WordPressのオリジナルテーマの練習</br>
    現状だと`link href="css/clean-blog.min.css" rel="stylesheet"`となっている箇所を</br>
    とりあえずこのオリジナルテーマのパスである`link href="wp-content/themes/WP_TryOriginalTheme/css/clean-blog.min.css" rel="stylesheet"`とすると、用意されたCSSが正しく表示される。</br>
    しかし直接ファイルのパスを記述するのは良くないとされているためphpでテンプレートタグを呼び出す仕様にする。</br>
-   `link href="<?php echo get_template_directory_uri(); ?>` とする
+   `link href="<?php echo get_template_directory_uri(); ?>` とする。</br>
    ```
    <!-- Custom styles for this template -->
    <link href="<?php echo get_template_directory_uri(); ?>/css/clean-blog.min.css" rel="stylesheet">
