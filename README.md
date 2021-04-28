@@ -130,6 +130,7 @@ WordPressのオリジナルテーマの練習</br>
         <?php endwhile; ?>     //追記
    ```
    わかりやすくするために`option + shift + F`をおして`<?php while (have_post()) : the_post(); ?> `から`<hr>`までをインデント&整形する。</br>
+   </br>
 2. ダミー記事を消す
    1.で追記した`<?php endwhile; ?>`より下の箇所を`<!-- Pager -->`の上のところまで削除
 </br>
