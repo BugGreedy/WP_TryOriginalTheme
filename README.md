@@ -21,7 +21,7 @@ WordPressのオリジナルテーマの練習</br>
 
 ## 第2回の内容
 ### テンプレートタグを使おう①
-1. boostrapより"Cleam Blog"というフリーテーマをDL。のち解凍する。</br>
+1. boostrapより"Clean Blog"というフリーテーマをDL。のち解凍する。</br>
    解凍されたファイルの中から"index.html"というファイル名を"index.php"にし、オリジナルテーマディレクトリ内の既存のindex.phpと置き換える。</br>
    </br>
 2. 置き換えたindex.phpをVScodeで開く。</br>
