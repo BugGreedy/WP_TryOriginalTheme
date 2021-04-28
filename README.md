@@ -90,16 +90,47 @@ WordPressのオリジナルテーマの練習</br>
         </div>
         // 以下は略
    ```
+   </br>
 2. CSSの設定を行う。
    "index.php"の中に`<!-- Custom styles for this template -->`という部分がある。これはこのページのCSSをどこから読み込むか指定させるタグがある箇所。</br>
    現状だと`link href="css/clean-blog.min.css" rel="stylesheet"`となっている箇所を</br>
    とりあえずこのオリジナルテーマのパスである`link href="wp-content/themes/WP_TryOriginalTheme/css/clean-blog.min.css" rel="stylesheet"`とすると、用意されたCSSが正しく表示される。</br>
    しかし直接ファイルのパスを記述するのは良くないとされているためphpでテンプレートタグを呼び出す仕様にする。</br>
    `link href="<?php echo get_template_directory_uri(); ?>` とする。</br>
-   下記は記載した箇所
+   下記は記載した箇所</br>
    ```
    <!-- Custom styles for this template -->
    <link href="<?php echo get_template_directory_uri(); ?>/css/clean-blog.min.css" rel="stylesheet"> // 追記箇所
    <?php wp_head(); ?>
    </head>
    ```
+   </br>
+## 第4回の内容
+### ループを使って一覧を表示させる
+1. 現状だと最新の投稿しか表示されていないので2件目、3件目も表示されるようにする
+   前回より記載されている`<?php the_post(); ?>`という箇所を`<?php while (have_post()) : the_post(); ?>`に変更</br>
+   次に直下の`<hr>`の下に`<?php endwhile; ?>`を記述する。</br>
+   以下はその様子</br>
+   ```
+   <?php while (have_post()) : the_post(); ?>   //追記
+          <div class="post-preview">
+            <a href="post.html">
+              <h2 class="post-title">
+                <?php the_title(); ?>
+              </h2>
+              <h3 class="post-subtitle">
+                <?php the_content(); ?>
+              </h3>
+            </a>
+            <p class="post-meta">Posted by
+              <?php the_author(); ?>
+              on <?php the_time("Y/m/d"); ?></p>
+          </div>
+          <hr>
+        <?php endwhile; ?>     //追記
+   ```
+   わかりやすくするために`option + shift + F`をおして`<?php while (have_post()) : the_post(); ?> `から`<hr>`までをインデント&整形する。</br>
+2. ダミー記事を消す
+   1.で追記した`<?php endwhile; ?>`より下の箇所を`<!-- Pager -->`の上のところまで削除
+</br>
+3. 
