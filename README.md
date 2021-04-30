@@ -169,7 +169,7 @@ WordPressのオリジナルテーマの練習</br>
 2. 正しく個別投稿ページへリンクさせるためにテンプレート階層を用いる。</br>
    [テンプレート階層](https://wpdocs.osdn.jp/%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E9%9A%8E%E5%B1%A4/)を参照。</br>
    現在は**index.php**というファイルを使用してすべてを見ている状態。</br>
-   wordpressは上記リンク内の[テンプレート階層図](https://wpdocs.osdn.jp/%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB:wp-template-hierarchy.jpg/)の左に近いphpを優先して使用する。
+   wordpressは上記リンク内の[テンプレート階層図](https://unofficialtokyo.com/wordpress-template-hierarchy//)の左に近いphpを優先して使用する。
    ここで下の階層を参照して、各投稿ページを見れるようにする。</br>
    2-1. 同ディレクトリ内に**single.php**というファイルを作成する。</br>
    ためしにここに何らかのhtmlを各投稿ページのリンクへ飛んだときこのsingle.phpの内容で表示される。また、このsingle.phpを削除したのち再度リンクへ飛ぶとindex.phpの内容で表示される。</br>
