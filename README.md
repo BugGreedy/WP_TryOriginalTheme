@@ -145,7 +145,7 @@ WordPressのオリジナルテーマの練習</br>
    3−3．現在本文表示を指定している`<?php the_content(); ?>`だと全文表示されるのでトップ画面としては好ましくない。そのため、`<?php the_excerpt(); ?>`に入れ替えて本文の一部表示するように指定する。</br>
    </br>
 4. 現在表示されている投稿件数の次のページへのリンクを作る。</br>
-   4-1．`<!-- Pager -->`直下の`<div class="clearfix">`の次に`<?php next_posts_link(); ?>`を記述する。</br>
+   `<!-- Pager -->`直下の`<div class="clearfix">`の次に`<?php next_posts_link(); ?>`を記述する。</br>
    これにより**次のページへ**というリンクが追加される。</br>
    また、`<?php previous_posts_link(); ?>`と記述する事で**前のページへ**というリンクが追加される。</br>
    あるいは`<?php echo paginate_links(); ?>`とすれば**1 2 3...5 次へ**のような表示をさせる事ができる。
