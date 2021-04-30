@@ -171,7 +171,35 @@ WordPressのオリジナルテーマの練習</br>
    現在は**index.php**というファイルを使用してすべてを見ている状態。</br>
    wordpressは上記リンク内の[テンプレート階層図](https://unofficialtokyo.com/wordpress-template-hierarchy//)の左に近いphpを優先して使用する。
    ここで下の階層を参照して、各投稿ページを見れるようにする。</br>
+   </br>
    2-1. 同ディレクトリ内に**single.php**というファイルを作成する。</br>
    ためしにここに何らかのhtmlを各投稿ページのリンクへ飛んだときこのsingle.phpの内容で表示される。また、このsingle.phpを削除したのち再度リンクへ飛ぶとindex.phpの内容で表示される。</br>
    これがWordPressのテンプレート階層の優先順位(図の左にある方が優先される)である。</br>
    </br>
+   2-2. single.phpのテーマ元である"clean blog"(startbootstrap-clean-blog-gh-pages)のディレクトリの中にある”post.html"の内容をコピペする。</br>
+   その後、最初にindex.phpでやった書き換えを行う。</br>
+   ①`<html lang = en> → <html lang=ja>`</br>
+   ②下記を削除
+   ```
+       <meta name="description" content="">
+       <meta name="author" content="">
+       <title>Clean Blog - Start Bootstrap Theme</title>
+   ```  
+   ③第3回の3のようにリンクや参照に`<?php echo get_template_directory_uri(); ?>`を挿入して正しく参照される
+   ④head要素の最後に`<?php wp_head(); ?>`、body要素の最後に`<?php wp_footer(); ?>`を記述。
+   ⑤index.phpと同様に`<?php while(have_posts()): the_post(); ?>`と`<?php endwhile; ?>`を記載。
+   ⑥post-metaの中身だけをペースト
+   ```
+   index.php
+   <p class="post-meta">Posted by
+              <?php the_author(); ?>
+              on <?php the_time('Y/m/d/g:ia'); ?></p>
+          </div>
+   ↓
+   single.php
+   <span class="meta">Posted by
+              <?php the_author(); ?>
+              on <?php the_time('Y/m/d/g:ia'); ?></span>
+   ```
+   </br>
+    
