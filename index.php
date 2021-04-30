@@ -17,7 +17,7 @@
   <!-- Custom styles for this template -->
   <link href="<?php echo get_template_directory_uri(); ?>/css/clean-blog.min.css" rel="stylesheet">
 
-   <?php wp_head(); ?>
+  <?php wp_head(); ?>
 </head>
 
 <body>
@@ -68,63 +68,29 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        <?php the_post(); ?>
-        <div class="post-preview">
-          <a href="post.html">
-            <h2 class="post-title">
-              <?php the_title(); ?>
-            </h2>
-            <h3 class="post-subtitle">
-              <?php the_content(); ?>
-            </h3>
-          </a>
-          <p class="post-meta">Posted by
-            <?php the_author(); ?>
-            on <?php the_time('Y/m/d/g:ia'); ?></p>
-        </div>
-        <hr>
-        <div class="post-preview">
-          <a href="post.html">
-            <h2 class="post-title">
-              I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.
-            </h2>
-          </a>
-          <p class="post-meta">Posted by
-            <a href="#">Start Bootstrap</a>
-            on September 18, 2019</p>
-        </div>
-        <hr>
-        <div class="post-preview">
-          <a href="post.html">
-            <h2 class="post-title">
-              Science has not yet mastered prophecy
-            </h2>
-            <h3 class="post-subtitle">
-              We predict too much for the next year and yet far too little for the next ten.
-            </h3>
-          </a>
-          <p class="post-meta">Posted by
-            <a href="#">Start Bootstrap</a>
-            on August 24, 2019</p>
-        </div>
-        <hr>
-        <div class="post-preview">
-          <a href="post.html">
-            <h2 class="post-title">
-              Failure is not an option
-            </h2>
-            <h3 class="post-subtitle">
-              Many say exploration is part of our destiny, but it’s actually our duty to future generations.
-            </h3>
-          </a>
-          <p class="post-meta">Posted by
-            <a href="#">Start Bootstrap</a>
-            on July 8, 2019</p>
-        </div>
-        <hr>
+        <?php while (have_posts()) : the_post(); ?>
+          <div class="post-preview">
+            <a href="post.html">
+              <h2 class="post-title">
+                <?php the_title(); ?>
+              </h2>
+              <h3 class="post-subtitle">
+                <?php the_excerpt(); ?>
+              </h3>
+            </a>
+            <p class="post-meta">Posted by
+              <?php the_author(); ?>
+              on <?php the_time('Y/m/d/g:ia'); ?></p>
+          </div>
+          <hr>
+        <?php endwhile; ?>
+        <!--  もとのダミーがあった場所(削除ずみ) -->
         <!-- Pager -->
         <div class="clearfix">
-          <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+        <!-- <?php previous_posts_link(); ?> -->
+        <!-- <?php next_posts_link(); ?> -->
+        <?php echo paginate_links(); ?>
+          <!--もとのbootstrapのnextボタン <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a> -->
         </div>
       </div>
     </div>

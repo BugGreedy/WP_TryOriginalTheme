@@ -138,4 +138,25 @@ WordPressのオリジナルテーマの練習</br>
    </br>
 2. ダミー記事を消す
    1.で追記した`<?php endwhile; ?>`より下の箇所を`<!-- Pager -->`の上のところまで削除</br>
-3. 修正
+  </br>
+3. 表示件数を確認し、本文の表示範囲を調整する。
+   3-1．[WordPressテーマユニットテストデータ](https://github.com/jawordpressorg/theme-test-data-ja)をDLし、その中のXMLデータをワードプレスのツールのインポートから開く。</br>
+   3−2．展開すると40数件の投稿されるので確認する。</br>
+   3−3．現在本文表示を指定している`<?php the_content(); ?>`だと全文表示されるのでトップ画面としては好ましくない。そのため、`<?php the_excerpt(); ?>`に入れ替えて本文の一部表示するように指定する。</br>
+   </br>
+4. 現在表示されている投稿件数の次のページへのリンクを作る。
+   4-1．`<!-- Pager -->`直下の`<div class="clearfix">`の次に`<?php next_posts_link(); ?>`を記述する。</br>
+   これにより**次のページへ**というリンクが追加される。</br>
+   また、`<?php previous_posts_link(); ?>`と記述する事で**前のページへ**というリンクが追加される。</br>
+   あるいは`<?php echo paginate_links(); ?>`とすれば**1 2 3...5 次へ**のような表示をさせる事ができる。
+   以下のその様子</br>
+   ```
+     <!-- Pager -->
+        <div class="clearfix">
+        <!-- <?php previous_posts_link(); ?> -->
+        <!-- <?php next_posts_link(); ?> -->
+        <?php echo paginate_links(); ?>
+          <!--もとのbootstrapのnextボタン <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a> -->
+        </div>
+   ```
+   </br>
