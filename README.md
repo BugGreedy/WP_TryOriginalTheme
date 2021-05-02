@@ -264,7 +264,7 @@ WordPressのオリジナルテーマの練習</br>
    </br>
    2-2. 上記の記述を関数に置き換えて先程指定したカスタムフィールドを呼び出せるようにする。</br>
    次の関数を使用して書き換えていく。</br>
-   `<?php $meta_values = get_post_meta($post_id, $key, $single); ?>`</br>
+   <!-- `<?php $meta_values = get_post_meta($post_id, $key, $single); ?>`</br> -->
    詳細は下記を参照。</br>
    参照:</br>
    [関数リファレンス"get_post_meta"](https://wpdocs.osdn.jp/%E9%96%A2%E6%95%B0%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9/get_post_meta/)</br>
