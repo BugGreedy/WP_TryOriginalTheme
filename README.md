@@ -246,7 +246,8 @@ WordPressのオリジナルテーマの練習</br>
    </br>
 2. カスタムフィールドが表示されるようにsingle.phpを編集する。</br>
    2-1. 一旦、表示だけさせるためにdlタグ（定義の意味）を用いて直接記述する。
-   ```    <!-- Post Content -->
+   ```
+   <!-- Post Content -->
     <article>
       <div class="container">
         <div class="row">
