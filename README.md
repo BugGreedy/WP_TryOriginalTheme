@@ -202,4 +202,6 @@ WordPressのオリジナルテーマの練習</br>
               on <?php the_time('Y/m/d/g:ia'); ?></span>
    ```
    </br>
-    
+## 第6回の内容
+### function.phpでサムネイル画像を表示しよう
+1. </br>
