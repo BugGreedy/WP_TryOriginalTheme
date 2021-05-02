@@ -267,6 +267,7 @@ WordPressのオリジナルテーマの練習</br>
    `<?php $meta_values = get_post_meta($post_id, $key, $single); ?>`</br>
    詳細は下記を参照。</br>
    参照:[関数リファレンス"get_post_meta"](https://wpdocs.osdn.jp/%E9%96%A2%E6%95%B0%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9/get_post_meta/)</br>
+   [3件目です。](http://localhost:8888/mamp_wordpress_handson/2021/04/30/3%e4%bb%b6%e7%9b%ae%e3%81%a7%e3%81%99%e3%80%82/)
    以下はその書き換えた様子。
    ```
 <dl>
