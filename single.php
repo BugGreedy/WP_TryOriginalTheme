@@ -81,18 +81,12 @@
 
             <dl>
              <dt>価格</dt>
-             <?php
-             $price = get_post_meta(get_the_ID(), '価格', true);
-             ?>
-             <dd><?php echo $price; ?>円</dd>
+             <dd><?php echo number_format(get_field('価格')); ?>円</dd>
              
              <dt>発売日</dt>
-             <?php
-             $published = get_post_meta(get_the_ID(), '発売日', true);
-             ?>
-             <dd><?php echo $published; ?></dd>
+             <dd><?php the_field('発売日'); ?></dd>
             </dl>
-            
+
           </div>
         </div>
       </div>

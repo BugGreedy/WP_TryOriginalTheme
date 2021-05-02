@@ -7,7 +7,7 @@ WordPressのオリジナルテーマの練習</br>
    両方とも中身は空白でよい。</br>
    </br>
 2. **style.css**に下記の内容を記載。</br>
-   ```
+   ```CSS
    /*
    Theme Name: WP_TryOriginalTheme
    Author: BugGreedy
@@ -26,7 +26,7 @@ WordPressのオリジナルテーマの練習</br>
    </br>
 2. 置き換えたindex.phpをVScodeで開く。</br>
    76行目付近にあるh2タグの内容をWordPressのtitleタグ(テンプレートタグ)に置き換える。</br>
-   ```
+   ```PHP
    <h2 class="post-title">
      <?php the_title(); ?>
    </h2>
@@ -35,21 +35,21 @@ WordPressのオリジナルテーマの練習</br>
    [WordPress Codex 日本語版/テンプレートタグ](https://wpdocs.osdn.jp/%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E3%82%BF%E3%82%B0)</br>
    </br>
 3. headタグの終わりにwpヘッドテンプレートを記入。</br>
-   ```
+   ```PHP
    # 略
      <?php wp_head(); ?>
    </head>
    ```
    </br>
 4. bodyタグの終わりにwpヘッドテンプレートを記入。</br>
-   ```
+   ```PHP
    # 略
      <?php wp_footer(); ?>
    </body>
    ```
    </br>
 5. 2.で記述したタイトルタグの付近にthe_timeテンプレートタグを挿入</br>
-   ```
+   ```PHP
          <div class="post-preview">
           <a href="post.html">
             <h2 class="post-title">
@@ -73,7 +73,7 @@ WordPressのオリジナルテーマの練習</br>
 1. 現在表示されているsubtitleやbootstrapなどの表示を修正する。
    前回記述した`<?php the_title(); ?>`の下に"subtitle"なるタブがあったが、WordPressにサブタイトルはないので`<?php the_content(); ?>`とし本文を表示させるようにしたい。</br>
    また、投稿者が直記述で`<a href="#">Start Bootstrap</a>`となっている箇所を`<?php the_author(); ?>`とし投稿者を表示されるようにする</br>
-   ```
+   ```php
     <?php the_post(); ?>
         <div class="post-preview">
           <a href="post.html">
@@ -98,7 +98,7 @@ WordPressのオリジナルテーマの練習</br>
    しかし直接ファイルのパスを記述するのは良くないとされているためphpでテンプレートタグを呼び出す仕様にする。</br>
    `link href="<?php echo get_template_directory_uri(); ?>` とする。</br>
    下記は記載した箇所</br>
-   ```
+   ```php
    <!-- Custom styles for this template -->
    <link href="<?php echo get_template_directory_uri(); ?>/css/clean-blog.min.css" rel="stylesheet"> // 追記箇所
    <?php wp_head(); ?>
@@ -116,7 +116,7 @@ WordPressのオリジナルテーマの練習</br>
    前回より記載されている`<?php the_post(); ?>`という箇所を`<?php while (have_post()) : the_post(); ?>`に変更</br>
    次に直下の`<hr>`の下に`<?php endwhile; ?>`を記述する。</br>
    以下はその様子。</br>
-   ```
+   ```php
    <?php while (have_post()) : the_post(); ?>   //追記
           <div class="post-preview">
             <a href="post.html">
@@ -132,7 +132,7 @@ WordPressのオリジナルテーマの練習</br>
               on <?php the_time("Y/m/d"); ?></p>
           </div>
           <hr>
-        <?php endwhile; ?>     //追記
+   <?php endwhile; ?>     //追記
    ```
    わかりやすくするために`option + shift + F`をおして`<?php while (have_post()) : the_post(); ?> `から`<hr>`までをインデント&整形する。</br>
    </br>
@@ -150,7 +150,7 @@ WordPressのオリジナルテーマの練習</br>
    また、`<?php previous_posts_link(); ?>`と記述する事で**前のページへ**というリンクが追加される。</br>
    あるいは`<?php echo paginate_links(); ?>`とすれば**1 2 3...5 次へ**のような表示をさせる事ができる。
    以下のその様子</br>
-   ```
+   ```php
      <!-- Pager -->
         <div class="clearfix">
         <!-- <?php previous_posts_link(); ?> -->
@@ -180,16 +180,16 @@ WordPressのオリジナルテーマの練習</br>
    その後、最初にindex.phpでやった書き換えを行う。</br>
    ①`<html lang = en> → <html lang=ja>`</br>
    ②下記を削除
-   ```
+   ```html
        <meta name="description" content="">
        <meta name="author" content="">
        <title>Clean Blog - Start Bootstrap Theme</title>
    ```  
-   ③第3回の3のようにリンクや参照に`<?php echo get_template_directory_uri(); ?>`を挿入して正しく参照される
-   ④head要素の最後に`<?php wp_head(); ?>`、body要素の最後に`<?php wp_footer(); ?>`を記述。
-   ⑤index.phpと同様に`<?php while(have_posts()): the_post(); ?>`と`<?php endwhile; ?>`を記載。
-   ⑥post-metaの中身だけをペースト
-   ```
+   ③第3回の3のようにリンクや参照に`<?php echo get_template_directory_uri(); ?>`を挿入して正しく参照される</br>
+   ④head要素の最後に`<?php wp_head(); ?>`、body要素の最後に`<?php wp_footer(); ?>`を記述。</br>
+   ⑤index.phpと同様に`<?php while(have_posts()): the_post(); ?>`と`<?php endwhile; ?>`を記載。</br>
+   ⑥post-metaの中身だけをペースト</br>
+   ```php
    index.php
    <p class="post-meta">Posted by
               <?php the_author(); ?>
@@ -206,7 +206,7 @@ WordPressのオリジナルテーマの練習</br>
 ### functions.phpでサムネイル画像を表示しよう
 1. オリジナルテーマディレクトリに**functions.php**という名前のファイルを作成</br>
    内容を下記のようにする。
-   ```
+   ```php
    <?php
    function init_func(){ 
     add_theme_support('title-tag');        //タグに表示されるページタイトルを表示
@@ -219,7 +219,7 @@ WordPressのオリジナルテーマの練習</br>
    いずれかの投稿に1.で追加したアイキャッチ画像機能で画像を指定。</br>
    今回は[3件目です。](http://localhost:8888/mamp_wordpress_handson/2021/04/30/3%e4%bb%b6%e7%9b%ae%e3%81%a7%e3%81%99%e3%80%82/)を指定。</br>
    **single.php**のheader要素の頭に次のように追記。
-   ```
+   ```php
    <!-- Page Header -->
     <?php
     $id = get_post_thumbnail_id();
@@ -246,7 +246,7 @@ WordPressのオリジナルテーマの練習</br>
    </br>
 2. カスタムフィールドが表示されるようにsingle.phpを編集する。</br>
    2-1. 一旦、表示だけさせるためにdlタグ（定義の意味）を用いて直接記述する。
-   ```
+   ```html
    <!-- Post Content -->
     <article>
       <div class="container">
@@ -262,22 +262,20 @@ WordPressのオリジナルテーマの練習</br>
           </div>
    以下は略
    ```
-   </br>
    2-2. 上記の記述を関数に置き換えて先程指定したカスタムフィールドを呼び出せるようにする。</br>
    次の関数を使用して書き換えていく。</br>
    `<?php $meta_values = get_post_meta($post_id, $key, $single); ?>`</br>
    詳細は下記を参照。</br>
-   参照:[関数リファレンス"get_post_meta"](https://wpdocs.osdn.jp/%E9%96%A2%E6%95%B0%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9/get_post_meta/)</br>
-   [3件目です。](http://localhost:8888/mamp_wordpress_handson/2021/04/30/3%e4%bb%b6%e7%9b%ae%e3%81%a7%e3%81%99%e3%80%82/)
+   参照:[関数リファレンスget_post_meta](https://wpdocs.osdn.jp/%E9%96%A2%E6%95%B0%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9/get_post_meta/)</br>
    以下はその書き換えた様子。
-   ```
+   ```php
    <dl>
    <dt>価格</dt>
    <?php
    $price = get_post_meta(get_the_ID(), '価格', true);
    ?>
    <dd><?php echo $price; ?>円</dd>
-   
+
    <dt>発売日</dt>
    <?php
    $published = get_post_meta(get_the_ID(), '発売日', true);
@@ -286,7 +284,44 @@ WordPressのオリジナルテーマの練習</br>
    </dl>
    ```
    </br>
-3. カスタムフィールドをより使いやすくする。
+
+3. カスタムフィールドをより使いやすくする。</br>
    3-1. WordPressのプラグイン"Advanced Custom Fields"を検索してインストール。</br>
    ("acf"と検索しても出てくる。)</br>
-   3-2. 
+   WordPressのダッシュボードメニューに"カスタムフィールド"という項目が増えるので、そちらから"価格"と"発売日"を追加。</br>
+   3-2. "Advanced Custom Fields"(以下"acf")をインストールする事により特別なテンプレートタグが追加される。それが`the field`である。</br>
+   single.phpを下記のように編集
+   ```php
+   <dl>
+    <dt>価格</dt>
+    <dd><?php the_field('価格'); ?>円</dd>
+    
+    <dt>発売日</dt>
+    <dd><?php the_field('発売日'); ?></dd>
+   </dl>
+   ```
+   3-3. また、"acf"によって`the field`の他に`get_field`というテンプレートタグも追加される。</br>
+   `the field`はバリューをそのまま表示するだけだが、`get_field`はその加工が可能になる。</br>
+   ただし`get_field`は値を取得するだけなので、表示させるには`echo get_field`という記述になる。</br>
+   以下はその例
+   ```php
+   <dl>
+    <dt>価格</dt>
+    <dd><?php echo number_format(get_field('価格')); ?>円</dd>
+    
+    <dt>発売日</dt>
+    <dd><?php the_field('発売日'); ?></dd>
+   </dl>
+   ```
+   ※ `number_format`は数値に対して3桁ごとにカンマを入れてくれるphpの関数。</br>
+   例：</br>
+   ```php
+   <dd><?php the_field('価格'); ?>円</dd>
+   ↓
+   2000円
+   
+   <dd><?php echo number_format(get_field('価格')); ?>円</dd>
+   ↓
+   2,000円
+   ```
+
