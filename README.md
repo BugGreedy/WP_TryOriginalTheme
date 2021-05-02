@@ -264,25 +264,23 @@ WordPressのオリジナルテーマの練習</br>
    </br>
    2-2. 上記の記述を関数に置き換えて先程指定したカスタムフィールドを呼び出せるようにする。</br>
    次の関数を使用して書き換えていく。</br>
-   <!-- `<?php $meta_values = get_post_meta($post_id, $key, $single); ?>`</br> -->
+   `<?php $meta_values = get_post_meta($post_id, $key, $single); ?>`</br>
    詳細は下記を参照。</br>
-   参照:</br>
-   [関数リファレンス](https://wpdocs.osdn.jp/%E9%96%A2%E6%95%B0%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9/get_post_meta/)</br>
-   [関数リファレンス"get_post_meta"](https://wpdocs.osdn.jp/%E9%96%A2%E6%95%B0%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9/get_post_meta/)
-   以下はその書き換えた様子</br>
+   参照:[関数リファレンス"get_post_meta"](https://wpdocs.osdn.jp/%E9%96%A2%E6%95%B0%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9/get_post_meta/)</br>
+   以下はその書き換えた様子。
    ```
-   <dl>
-   <dt>価格</dt>
-   <?php
-   $price = get_post_meta(get_the_ID(), '価格', true);
-   ?>
-   <dd><?php echo $price; ?>円</dd>
-   
-   <dt>発売日</dt>
-   <?php
-   $published = get_post_meta(get_the_ID(), '発売日', true);
-   ?>
-   <dd><?php echo $published; ?></dd>
-   </dl>
+<dl>
+<dt>価格</dt>
+<?php
+$price = get_post_meta(get_the_ID(), '価格', true);
+?>
+<dd><?php echo $price; ?>円</dd>
+
+<dt>発売日</dt>
+<?php
+$published = get_post_meta(get_the_ID(), '発売日', true);
+?>
+<dd><?php echo $published; ?></dd>
+</dl>
    ```
    </br>
