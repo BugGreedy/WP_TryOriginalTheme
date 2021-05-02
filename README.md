@@ -227,5 +227,5 @@ WordPressのオリジナルテーマの練習</br>
     <header class="masthead" style="background-image: url('<?php echo $img[0]; ?>')">
     下記は略
     ```
-    指定したページを確認し、指定したアイキャッチ画像が表示されていればOK.</br>
+    指定したページを確認し、指定したアイキャッチ画像が表示されていればOK。</br>
     </br>
