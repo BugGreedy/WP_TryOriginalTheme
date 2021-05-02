@@ -203,5 +203,29 @@ WordPressのオリジナルテーマの練習</br>
    ```
    </br>
 ## 第6回の内容
-### function.phpでサムネイル画像を表示しよう
-1. </br>
+### functions.phpでサムネイル画像を表示しよう
+1. オリジナルテーマディレクトリに**functions.php**という名前のファイルを作成</br>
+   内容を下記のようにする。
+   ```
+   <?php
+   function init_func(){ 
+    add_theme_support('title-tag');        //タグに表示されるページタイトルを表示
+    add_theme_support('post-thumnails');   //投稿確認画面の右のメニューにアイキャッチ画像の機能を追加
+   }
+   add_action('init','init_func');
+   ```
+   </br>
+2. **single.php**に指定したサムネイルが表示されるように設定する。</br>
+   いずれかの投稿に1.で追加したアイキャッチ画像機能で画像を指定。</br>
+   **single.php**のheader要素の頭に次のように追記。
+   ```
+   <!-- Page Header -->
+    <?php
+    $id = get_post_thumbnail_id();
+    $img = wp_get_attachment_image_src($id);
+    ?>
+    <header class="masthead" style="background-image: url('<?php echo $img[0]; ?>')">
+    下記は略
+    ```
+    指定したページを確認し、指定したアイキャッチ画像が表示されていればOK.</br>
+    </br>
