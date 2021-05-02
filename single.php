@@ -78,6 +78,21 @@
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
             <?php the_content(); ?>
+
+            <dl>
+             <dt>価格</dt>
+             <?php
+             $price = get_post_meta(get_the_ID(), '価格', true);
+             ?>
+             <dd><?php echo $price; ?>円</dd>
+             
+             <dt>発売日</dt>
+             <?php
+             $published = get_post_meta(get_the_ID(), '発売日', true);
+             ?>
+             <dd><?php echo $published; ?></dd>
+            </dl>
+            
           </div>
         </div>
       </div>

@@ -217,6 +217,7 @@ WordPressのオリジナルテーマの練習</br>
    </br>
 2. **single.php**に指定したサムネイルが表示されるように設定する。</br>
    いずれかの投稿に1.で追加したアイキャッチ画像機能で画像を指定。</br>
+   今回は[3件目です。](http://localhost:8888/mamp_wordpress_handson/wp-admin/post.php?post=14&action=edit/)を指定。</br>
    **single.php**のheader要素の頭に次のように追記。
    ```
    <!-- Page Header -->
@@ -235,8 +236,49 @@ WordPressのオリジナルテーマの練習</br>
 今回は**カスタムフィールド**を扱う。</br>
 1. WordPressの新規投稿画面からカスタムフィールドを有効にする。</br>
    新規投稿画面の右上の3点メニューの中の"設定"→"パネル"→"カスタムフィールド"にチェックを入れる。</br>
-   カスタムフィールドで仮に下記を追加
+   カスタムフィールドで仮に下記を追加。
    | 名前         | 値                |
    | ------------ | ----------------- |
    | 価格         | 1500              |
    | 発売日        | 2021年5月2日       |
+   しかしこのままでは表示に反映されない。
+   </br>
+2. カスタムフィールドが表示されるようにsingle.phpを編集する。</br>
+   2-1. 一旦、表示だけさせるためにdlタグ（定義の意味）を用いて直接記述する。
+   ```    <!-- Post Content -->
+    <article>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <?php the_content(); ?>
+
+            <dl>
+             <dt>価格</dt>
+             <dd>1,500円</dd>
+             <dt>発売日</dt>
+             <dd>2021年5月2日</dd>
+          </div>
+   以下は略
+   ```
+   </br>
+   2-2. 上記の記述を関数に置き換えて先程指定したカスタムフィールドを呼び出せるようにする。</br>
+   次の関数を使用して書き換えていく。</br>
+   `<?php $meta_values = get_post_meta($post_id, $key, $single); ?>`</br>
+   詳細は下記を参照。</br>
+   参照：[関数リファレンス"get_post_meta](https://wpdocs.osdn.jp/%E9%96%A2%E6%95%B0%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9/get_post_meta/)</br>
+   以下はその書き換えた様子</br>
+   ```
+   <dl>
+    <dt>価格</dt>
+    <?php
+    $price = get_post_meta(get_the_ID(), '価格', true);
+    ?>
+    <dd><?php echo $price; ?>円</dd>
+    
+    <dt>発売日</dt>
+    <?php
+    $published = get_post_meta(get_the_ID(), '発売日', true);
+    ?>
+    <dd><?php echo $published; ?></dd>
+   </dl>
+   ```
