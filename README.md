@@ -270,18 +270,22 @@ WordPressのオリジナルテーマの練習</br>
    [3件目です。](http://localhost:8888/mamp_wordpress_handson/2021/04/30/3%e4%bb%b6%e7%9b%ae%e3%81%a7%e3%81%99%e3%80%82/)
    以下はその書き換えた様子。
    ```
-<dl>
-<dt>価格</dt>
-<?php
-$price = get_post_meta(get_the_ID(), '価格', true);
-?>
-<dd><?php echo $price; ?>円</dd>
-
-<dt>発売日</dt>
-<?php
-$published = get_post_meta(get_the_ID(), '発売日', true);
-?>
-<dd><?php echo $published; ?></dd>
-</dl>
+   <dl>
+   <dt>価格</dt>
+   <?php
+   $price = get_post_meta(get_the_ID(), '価格', true);
+   ?>
+   <dd><?php echo $price; ?>円</dd>
+   
+   <dt>発売日</dt>
+   <?php
+   $published = get_post_meta(get_the_ID(), '発売日', true);
+   ?>
+   <dd><?php echo $published; ?></dd>
+   </dl>
    ```
    </br>
+3. カスタムフィールドをより使いやすくする。
+   3-1. WordPressのプラグイン"Advanced Custom Fields"を検索してインストール。</br>
+   ("acf"と検索しても出てくる。)</br>
+   3-2. 
