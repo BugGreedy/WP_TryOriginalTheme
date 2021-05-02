@@ -268,6 +268,7 @@ WordPressのオリジナルテーマの練習</br>
    詳細は下記を参照。</br>
    参照:</br>
    [関数リファレンス"get_post_meta"](https://wpdocs.osdn.jp/%E9%96%A2%E6%95%B0%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9/get_post_meta/)</br>
+   [関数リファレンス"get_post_meta"](https://wpdocs.osdn.jp/%E9%96%A2%E6%95%B0%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9/get_post_meta/)
    以下はその書き換えた様子</br>
    ```
    <dl>
