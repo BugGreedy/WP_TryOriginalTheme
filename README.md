@@ -217,7 +217,7 @@ WordPressのオリジナルテーマの練習</br>
    </br>
 2. **single.php**に指定したサムネイルが表示されるように設定する。</br>
    いずれかの投稿に1.で追加したアイキャッチ画像機能で画像を指定。</br>
-   今回は[3件目です。](http://localhost:8888/mamp_wordpress_handson/wp-admin/post.php?post=14&action=edit/)を指定。</br>
+   今回は[3件目です。](http://localhost:8888/mamp_wordpress_handson/2021/04/30/3%e4%bb%b6%e7%9b%ae%e3%81%a7%e3%81%99%e3%80%82/)を指定。</br>
    **single.php**のheader要素の頭に次のように追記。
    ```
    <!-- Page Header -->
