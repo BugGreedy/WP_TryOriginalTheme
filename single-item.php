@@ -56,16 +56,13 @@
     $id = get_post_thumbnail_id();
     $img = wp_get_attachment_image_src($id);
     ?>
-    <header class="masthead" style="background-image: url('<?php echo $img[0]; ?>')">
+    <header class="" style="background-image: url('<?php echo $img[0]; ?>')">
       <div class="overlay"></div>
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="post-heading">
               <h1><?php the_title(); ?></h1>
-              <span class="meta">Posted by
-                <?php the_author(); ?>
-                on <?php the_time('Y/m/d/g:ia'); ?></span>
             </div>
           </div>
         </div>
@@ -78,6 +75,14 @@
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
             <?php the_content(); ?>
+
+              <dl>
+               <dt>価格</dt>
+               <dd><?php echo number_format(get_field('価格')); ?>円</dd>
+               
+               <dt>発売日</dt>
+               <dd><?php the_field('発売日'); ?></dd>
+              </dl>
 
           </div>
         </div>

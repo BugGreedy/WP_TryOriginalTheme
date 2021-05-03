@@ -383,5 +383,87 @@ WordPressのオリジナルテーマの練習</br>
 
 ## 第9回の内容
 ### カスタム投稿(ポスト)タイプのテンプレートファイルを作ろう
+1. 商品のカスタム投稿タイプを作成したので、通常投稿の価格や発売日のカスタムフィールドの表示をなくす。</br>
+   仮に表示をけすためにsingle.phpに下記の記述を追加
+   ```php
+   <?php if(!is_singular('post')): ?>   // ここと
+     <dl>
+      <dt>価格</dt>
+      <dd><?php echo number_format(get_field('価格')); ?>円</dd>
+      
+      <dt>発売日</dt>
+      <dd><?php the_field('発売日'); ?></dd>
+     </dl>
+   <?php endif; ?>   // ここを追記
+   ```
+   この記述によって通常の投稿には価格と発売日のカスタムフィールドの表示をなくす事ができる。</br>
+   しかし、一般の投稿とカスタム投稿ではレイアウトが違ったりif構文を入れる事で内容が複雑化するおそれがある。</br>
+   そのため、single.phpより優先されるカスタム投稿タイプに使われるテンプレートファイルを作成して対応させる。</br>
+   </br>
+2. カスタム投稿タイプ用のテンプレートファイルを作成する。</br>
+   `single.php`をコピーして**single-item.php**という名前で複製する。これにより前回指定した"item"つまり"商品"のカスタム投稿タイプはこちらのテンプレートファイルを優先して使用されるようになる。</br>
+   また、通常の投稿タイプで使用される`single.php`からは価格と発売日の表示をする部分を削除する。</br>
+   </br>
+3. 商品一覧ページを編集する。</br>
+   まず、一覧ページを見るには追加したカスタム投稿タイプの後ろがないURLで表示する事ができる。例：今回の商品の場合は`~略/item/`</br>
+   **注意**：`function.php`内で`'has_archive' => true,`になっていないと一覧が表示されない。</br>
+   現在は一覧(archive)ページのテンプレートは作成していないため`index.php`が使用されている。一般的なarchiveファイルを当てるのは他の投稿タイプが存在する可能性を考慮してやめておきたい。そこで前回のカスタム投稿タイプ専用のテンプレートファイルを作成したように今回も専用のアーカイブテンプレートファイルを作成する。</br>
+   `index.php`をコピーして**archive-item.php**として複製する。</br>
+4. 一覧テンプレートファイルを編集する。</br>
+   `archive-item.php`を下記のように編集。</br>
+   ```php
+   <!-- Page Header -->
+   <header class="masthead" style="background-image: url('<?php echo get_template_directory_uri(); ?>/img/home-bg.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>Clean Blog</h1>  //  タイトルを"商品一覧"に変更
+            <span class="subheading">A Blog Theme by Start Bootstrap</span> // サブタイトルは必要ないので削除
+          </div>
+        </div>
+      </div>
+    </div>
+   </header>
+   ```
+   次に下記も編集。
+   ```php
+   <!-- Main Content -->
+   <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <?php while (have_posts()) : the_post(); ?>
+          <div class="post-preview">
+          <a href="<?php the_permalink(); ?>">
+              <h2 class="post-title">
+                <?php the_title(); ?>
+              </h2>
+              <h3 class="post-subtitle">    //  excerpt(商品説明)欄を削除
+                <?php the_excerpt(); ?>  
+              </h3>                         //  ここまで削除
+            </a>
+            <p class="post-meta">Posted by      //  Posted by欄を削除
+              <?php the_author(); ?>
+              on <?php the_time('Y/m/d/g:ia'); ?></p> // ここまで削除
+              // 下記を追加(single-item.phpテンプレート作成時と同様に金額を表示させる。)
+              <p> <?php echo number_format(get_field('価格')); ?>円</p>  
+          </div>
+          <hr>
+        <?php endwhile; ?>
+        <!--  もとのダミーがあった場所(削除ずみ) -->
+        <!-- Pager -->
+        <div class="clearfix">
+        <!-- <?php previous_posts_link(); ?> -->
+        <!-- <?php next_posts_link(); ?> -->
+        <?php echo paginate_links(); ?>
+          <!--もとのbootstrapのnextボタン <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a> -->
+        </div>
+      </div>
+    </div>
+   </div> 
+   ```
+   これで"商品"投稿タイプの一覧ページのテンプレートができた。</br>
+
 
 
