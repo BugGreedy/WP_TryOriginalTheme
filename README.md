@@ -530,12 +530,111 @@ WordPressのオリジナルテーマの練習</br>
      <dd><?php the_field('発売日'); ?></dd>
    </dl>
    ```
-   ①[get_the_terms](https://wpdocs.osdn.jp/%E9%96%A2%E6%95%B0%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9/get_the_terms/):投稿に割り当てられたタクソノミーのターム（カスタム分類の項目）を取得する。</br>
+   ①[get_the_terms](https://wpdocs.osdn.jp/%E9%96%A2%E6%95%B0%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9/get_the_terms/)：投稿に割り当てられたタクソノミーのターム（カスタム分類の項目）を取得する。</br>
    ②指定したタクソノミーすべてを取るため配列の形で取得する。その投稿に指定されたタクソノミーすべてを表示させるために、`foreach`で配列の中身をすべて表示させる。</br>
-   ③[get_term_link](https://wpdocs.osdn.jp/%E9%96%A2%E6%95%B0%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9/get_term_link/)表示されたカテゴリー名(タクソノミー)にカテゴリー別ページのリンクを取得させるため、そのタクソノミーごとのスラッグ(分類ごとに指定されたアドレスの一部みたいなもの)を取得する。</br>
+   ③[get_term_link](https://wpdocs.osdn.jp/%E9%96%A2%E6%95%B0%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9/get_term_link/)：表示されたカテゴリー名(タクソノミー)にカテゴリー別ページのリンクを取得させるため、そのタクソノミーごとのスラッグ(分類ごとに指定されたアドレスの一部みたいなもの)を取得する。</br>
 </br>
 
 ## 第11回の内容
 ### ヘッダー・フッターとページテンプレートについて
+概要：ヘッダーやフッターなど各ページ共通の部分を切り出して個別のファイルとする。
+1. まずヘッダー(実際はhead要素)から切り出していく。
+   一例として一番上部の`<!DOCTYPE html>`からheaderまでを切りだして、body要素だけ残すというやり方(`<?php get_header(); ?>`のように記述する)もできる。</br>
+   しかしこのやり方だとエディターによってはエラーが発生する場合がある。理由はbodyタグをぶった切ってしまう事から。</br>
+   そのためhead要素のみ切り出してやるやり方を推奨する。</br>
+   `index.php`を下記のように編集。
+   ```php
+   <head>
+    <?php get_header(); ?>  // 中身をすべて切り出す。
+   </head>
+   ```
+   上記から切り取った内容を**header.php**という名前のファイルを作成して貼り付ける。</br>
+   他のファイルのhead要素も同じようにする。</br>
+2. 次にフッター</br>
+   フッターもhead要素同様にbody要素を切らないように等、一部のみを切り出すようにする。
+   `index.php`を下記のように編集。
+   ```php
+      </footer>
+ 
+      <!-- Bootstrap core JavaScript -->
+      <script src="<?php echo get_template_directory_uri(); ?>/vendor/ jquery/jquery.min.js"></script>
+      <script src="<?php echo get_template_directory_uri(); ?>/vendor/ bootstrap/js/bootstrap.bundle.min.js"></script>
+     
+      <!-- Custom scripts for this template -->
+      <script src="<?php echo get_template_directory_uri(); ?>/js/ clean-blog.min.js"></script>
+     
+      <?php wp_footer(); ?>
+    </body>
+    
+    </html>
+   ```
+    ↓
+   ```php
+       </footer>
+       <?php get_footer(); ?>
+       </body>
+    
+    </html>
+  ```
+  ヘッダーと同様に上記から切り取った内容を**footer.php**という名前のファイルを作成して貼り付ける。</br>
+  **補足**：そのほかに`<?php get_sidebar(); ?>`のようにしてサイドバーを切り出す事も可能。</br>
+  </br>
+3. その他WordPressではどんなパーツでも切り出して共通部分として使用する事ができる。
+   今回はbody要素上部のゔ`Navigation`という部分を切り出す。
+   ```php
+   <body>
+
+   <!-- Navigation -->
+   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+     <div class="container">
+       <a class="navbar-brand" href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a>
+       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+         Menu
+         <i class="fas fa-bars"></i>
+       </button>
+       <div class="collapse navbar-collapse" id="navbarResponsive">
+         <ul class="navbar-nav ml-auto">
+           <li class="nav-item">
+             <a class="nav-link" href="index.html">Home</a>
+           </li>
+           <li class="nav-item">
+             <a class="nav-link" href="about.html">About</a>
+           </li>
+           <li class="nav-item">
+             <a class="nav-link" href="post.html">Sample Post</a>
+           </li>
+           <li class="nav-item">
+             <a class="nav-link" href="contact.html">Contact</a>
+           </li>
+         </ul>
+       </div>
+     </div>
+   </nav>
+   ↓
+   <body>
+
+   <?php get_template_part('includes/nav'); ?>
+   // 説明は下記。
+   ```
+   まずフォルダを作成(今回は"includes"という名前で設定するが名前はなんでもよい)。</br>
+   その中に仮に`nav.php`という名前でファイルを作成して切り出した部分を貼り付ける。</br>
+   次にもとの`Navigation`があった場所に`<?php get_template_part('includes/nav')>`と記述する。この際、パラメータに入れるのは先程作成した切り出しファイルの相対パス。".php"は書かなくて良い。</br>
+   </br>
+   同様の方法で`footer`(先程のfooterとは別)も切り出してみる。</br>
+   `index.php`を下記のように編集。
+   ```php
+    <!-- Footer -->
+     <?php get_template_part('includes/footer02'); ?>
+   
+     <?php get_footer(); ?>
+     </body>
+   </html>
+   ```
+   先程と区別するため"includes"の中に`footer02`という名前のファイルを作成し、切り出した部分を貼り付ける。
+
+
+
+
+
 
 
