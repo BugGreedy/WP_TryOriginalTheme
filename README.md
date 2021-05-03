@@ -468,6 +468,45 @@ WordPressのオリジナルテーマの練習</br>
 
 ## 第10回の内容
 ### カスタム分類（タクソノミー）で、分類項目を追加しよう
+概要：投稿には主に"カテゴリー"と"タグ"という分類タイプがあるが、これは増やす事が可能。</br>
+これが**カスタム分類(タクソノミー)**である。
+1. `function.php`を編集する。
+   ```php
+   <?php
+   function init_func(){ 
+
+           略
+
+     register_taxonomy('item_category','item',[  // 以下を追記
+      'labels' => [
+        'name' => '商品カテゴリー'
+      ],
+      'hierarchical' => true,
+   }
+   add_action('init','init_func');
+   ```
+   補足：ここでの`'hierarchical'`のような配列のオプション(引数)は[こちら](https://wpdocs.osdn.jp/%E9%96%A2%E6%95%B0%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9/register_taxonomy/)を参照。</br>
+   上記を追記する事で"商品"投稿タイプ(item)に"商品カテゴリー"というカスタム分類が追加された。</br>
+   現状はカテゴリーのような使い勝手だが、`'hierarchical' => false,`にする事でタグのような使い方も可能。</br>
+   簡単にいうと`'hierarchical'`を設定する事で親子関係ができるか、全て並列で扱うかを指定する事ができる。</br>
+   また、`register_taxonomy('item_category','item',`の箇所の`'item'を'post'`にする事で通常の投稿に、また`'page'`とすることで固定ページに"商品カテゴリー"というカスタム分類を追加する事もできる。</br>
+   </br>
+   上記で追加したカスタム分類は、投稿を新規追加する際のエディタ(gutenbelg)のとき、右側のメニューに追加したカスタム分類が表示されない。</br>
+   そこで下記を追記する事で上記の場所でも表示する事ができる。
+   ```php
+   register_taxonomy('item_category','item',[
+      'labels' => [
+        'name' => '商品カテゴリー'
+      ],
+      'hierarchical' => true,
+      'show_in_rest' => true,
+   ]);
+   ```
+   これで投稿の新規作成の右側のメニューに追加したカスタム分類を表示する事ができる。</br>
+   </br>
+
+2. 
+
 
 
 
