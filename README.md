@@ -478,10 +478,11 @@ WordPressのオリジナルテーマの練習</br>
            略
 
      register_taxonomy('item_category','item',[  // 以下を追記
-      'labels' => [
-        'name' => '商品カテゴリー'
-      ],
-      'hierarchical' => true,
+       'labels' => [
+         'name' => '商品カテゴリー'
+       ],
+       'hierarchical' => true,
+     ]);
    }
    add_action('init','init_func');
    ```
@@ -505,9 +506,32 @@ WordPressのオリジナルテーマの練習</br>
    これで投稿の新規作成の右側のメニューに追加したカスタム分類を表示する事ができる。</br>
    </br>
 
-2. 
-
-
-
-
+2. カスタム分類(タクソノミー)のテンプレートファイルを作成する。</br>
+   `index.php`をコピーして**item_category.php**として複製する。</br>
+   前回同様にタイトルを編集し、日付など不要なものを削除。</br>
+   </br>
+   また、タクソノミーに関しては商品ページにどのカテゴリーか表示する必要がある場合がある。その際に使用できる関数がある。</br>
+   `single-item.php`を下記のように編集。
+   ```php
+   <dl>
+     <dt>カテゴリー</dt>
+     <?php
+     $terms = get_the_terms(get_the_ID(),'item_category');  //  ①
+     foreach ($terms as $term):                             //   ②
+     ?>
+     <dd><a href="<?php echo get_term_link($term->slug, 'item_category'); ?>"><?php 
+   echo htmlspecialchars($term->name); ?></a></dd>  // ③
+     <?php
+     endforeach;
+     ?>
+     <dt>価格</dt>
+     <dd><?php echo number_format(get_field('価格')); ?>円</dd>
+     <dt>発売日</dt>
+     <dd><?php the_field('発売日'); ?></dd>
+   </dl>
+   ```
+   ①[get_the_terms](https://wpdocs.osdn.jp/%E9%96%A2%E6%95%B0%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9/get_the_terms/):投稿に割り当てられたタクソノミーのターム（カスタム分類の項目）を取得する。</br>
+   ②指定したタクソノミーすべてを取るため配列の形で取得する。その投稿に指定されたタクソノミーすべてを表示させるために、`foreach`で配列の中身をすべて表示させる。</br>
+   ③[get_term_link]表示されたカテゴリー名(タクソノミー)にカテゴリー別ページのリンクを取得させるため、そのタクソノミーごとのスラッグ(分類ごとに指定されたアドレスの一部みたいなもの)を取得する。</br>
+   
 
