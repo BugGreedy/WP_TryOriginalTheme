@@ -1,6 +1,8 @@
 <?php
 /*
-
+ Template Name: LP用レイアウト
+*/
+?>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -11,7 +13,7 @@
 
 <body>
 
-<?php get_template_part('includes/nav'); ?>
+<?php get_template_part('includes/nav'); ?> 
 
 <?php while (have_posts()) : the_post(); ?>
 
